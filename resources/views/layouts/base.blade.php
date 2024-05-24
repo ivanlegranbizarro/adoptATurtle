@@ -28,8 +28,8 @@
     @yield('content')
   </main>
 
-  <footer class="mt-10 text-center text-gray-500 font-bold uppercase">
-    AdoptATurtle - All rights reserved &copy; {{ now()->year }}
+  <footer class="mt-10 text-center text-gray-500 font-bold uppercase my-10">
+    AdoptATurtle - All rights reserved &copy; {{ now()->year }} 🐢
   </footer>
 
 
