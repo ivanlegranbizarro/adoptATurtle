@@ -8,7 +8,7 @@
     <img src="{{ asset('img/tortuga-george.jpg') }}" alt="Login Turtle" />
   </div>
   <div class="md:w-4/12 bg-white shadow-xl rounded-lg p-6">
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="">
       @csrf
 
       <div class="mb-4">
