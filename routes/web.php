@@ -1,15 +1,14 @@
 <?php
 
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TortugaController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-  return view('layouts.base');
-});
 
-Route::get('/register', function () {
-  return view('users.register');
-});
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('registe');
 
-Route::get('/login', function () {
-  return view('users.login');
-});
+
+Route::resources([
+  'tortugas' => TortugaController::class
+]);
