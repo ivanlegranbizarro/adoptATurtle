@@ -21,6 +21,12 @@
     </div>
   </header>
 
+  @if (session('success'))
+  <p class="text-green-500 font-bold text-lg text-center my-5" role="alert">
+    {{ session('success') }}
+  </p>
+  @endif
+
   <main class="container mx-auto mt-10">
     <h2 class="font-black text-center text-3xl mb-10">
       @yield('title')

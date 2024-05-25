@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tortuga extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+
+
+  protected $fillable = [
+    'name',
+    'birthday',
+    'image',
+  ];
 }
