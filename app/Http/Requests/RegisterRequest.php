@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\NoEmojis;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
@@ -22,7 +23,7 @@ class RegisterRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'name' => ['required', 'string', 'min:3', 'max:255'],
+      'name' => ['required', 'string', 'min:3', 'max:255', new NoEmojis],
       'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
       'password' => ['required', 'string', 'min:6', 'confirmed'],
     ];
