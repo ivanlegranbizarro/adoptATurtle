@@ -15,8 +15,13 @@
         AdoptATurtle
       </h1>
       <nav class="flex gap-2 items-center">
-        <a class="font-bold uppercase text-gray-600 text-sm" href="#">login</a>
-        <a class="font-bold uppercase text-gray-600 text-sm" href="#">crear cuenta</a>
+        @guest()
+        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('login') }}">login</a>
+        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('register') }}">crear cuenta</a>
+        @endguest
+        @auth()
+        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('logout') }}">logout</a>
+        @endauth
       </nav>
     </div>
   </header>
