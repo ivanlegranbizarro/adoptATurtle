@@ -91,6 +91,10 @@ class TortugaController extends Controller
    */
   public function destroy(Tortuga $tortuga): RedirectResponse
   {
+    if ($tortuga->image) {
+      Storage::delete(str_replace('storage/', 'public/', $tortuga->image));
+    }
+
     $tortuga->delete();
 
     return redirect()->route('tortugas.index')->with('success', 'You have successfully deleted information about a turtle!');
