@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateTortugaRequest;
 use App\Models\Tortuga;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class TortugaController extends Controller
 {
@@ -35,7 +37,17 @@ class TortugaController extends Controller
 
     Tortuga::create($data);
 
-    return redirect()->route('tortugas.index')->with('success', 'You have successfully added a new turtle!');
+    if ($request->hasFile('image')) {
+      $image = $request->file('image');
+      $manager = new ImageManager(new Driver());
+      $image_extension = $image->getClientOriginalExtension();
+      $name_image = time() . '.' . $image_extension;
+      $img = $manager->read($image);
+      $img = $img->resize(800, 600);
+      $img->toJpeg(80)->save(public_path('storage/images/' . $name_image));
+      $data['image'] = 'storage/images/' . $name_image;
+    }
+    return redirect()->route('tortugas.index')->withErrors($request->validator);
   }
 
   /**
@@ -62,6 +74,17 @@ class TortugaController extends Controller
     $data = $request->validated();
 
     $tortuga->update($data);
+
+    if ($request->hasFile('image')) {
+      $image = $request->file('image');
+      $manager = new ImageManager(new Driver());
+      $image_extension = $image->getClientOriginalExtension();
+      $name_image = time() . '.' . $image_extension;
+      $img = $manager->read($image);
+      $img = $img->resize(800, 600);
+      $img->toJpeg(80)->save(public_path('storage/images/' . $name_image));
+      $data['image'] = 'storage/images/' . $name_image;
+    }
 
     return redirect()->route('tortugas.index')->with('success', 'You have successfully updated information about a turtle!');
   }
