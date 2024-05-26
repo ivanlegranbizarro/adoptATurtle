@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tortuga;
+use Illuminate\View\View;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTortugaRequest;
 use App\Http\Requests\UpdateTortugaRequest;
-use App\Models\Tortuga;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 
 class TortugaController extends Controller
 {
@@ -32,6 +34,12 @@ class TortugaController extends Controller
   public function store(StoreTortugaRequest $request): RedirectResponse
   {
     $data = $request->validated();
+
+    if ($request->hasFile('image')) {
+      $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+      $path = $request->file('image')->storeAs('public/images', $fileName);
+      $data['image'] = '/storage/' . $path;
+    }
 
     Tortuga::create($data);
 
@@ -61,7 +69,19 @@ class TortugaController extends Controller
   {
     $data = $request->validated();
 
+    if ($request->hasFile('image')) {
+
+      if ($tortuga->image) {
+        Storage::delete(str_replace('/storage/', 'public/', $tortuga->image));
+      }
+
+      $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+      $path = $request->file('image')->storeAs('public/images', $fileName);
+      $data['image'] = '/storage/' . $path;
+    }
+
     $tortuga->update($data);
+
 
     return redirect()->route('tortugas.index')->with('success', 'You have successfully updated information about a turtle!');
   }
@@ -71,6 +91,10 @@ class TortugaController extends Controller
    */
   public function destroy(Tortuga $tortuga): RedirectResponse
   {
+    if ($tortuga->image) {
+      Storage::delete(str_replace('storage/', 'public/', $tortuga->image));
+    }
+
     $tortuga->delete();
 
     return redirect()->route('tortugas.index')->with('success', 'You have successfully deleted information about a turtle!');
