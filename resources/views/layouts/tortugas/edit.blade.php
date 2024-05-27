@@ -11,7 +11,7 @@
 
       <div class="mb-4">
         <label for="name" class="mb-2 block uppercase text-gray-500 font-bold">Name</label>
-        <input type="text" name="name" id="name" placeholder="Turtle name" value="{{ old('name', $tortuga->name) }}" class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" />
+        <input type="text" name="name" id="name" placeholder="Turtle name" value="{{ old('name', $tortuga->name) }}" class="border p-3 w-full" />
         @error('name')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
@@ -19,7 +19,7 @@
 
       <div class="mb-4">
         <label for="birthday" class="mb-2 block uppercase text-gray-500 font-bold">Birthday</label>
-        <input type="date" name="birthday" id="birthday" placeholder="Turtle's birthday" value="{{ old('birthday', $tortuga->birthday->format('Y-m-d')) }}" class="border p-3 w-full rounded-lg @error('birthday') border-red-500 @enderror" />
+        <input type="date" name="birthday" id="birthday" placeholder="Turtle's birthday" value="{{ old('birthday', $tortuga->birthday->format('Y-m-d')) }}" class="border p-3 w-full rounded-lg" />
         @error('birthday')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
