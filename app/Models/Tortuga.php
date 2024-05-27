@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Adopcion;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tortuga extends Model
 {
@@ -16,4 +17,9 @@ class Tortuga extends Model
     'birthday',
     'image',
   ];
+
+  public function adopcion()
+  {
+    return $this->hasOne(Adopcion::class);
+  }
 }
