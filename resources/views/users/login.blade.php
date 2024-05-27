@@ -11,7 +11,8 @@
     <turbo-frame id="turbo-frame-login">
       <form method="POST" action="">
         @csrf
-
+pe="submit" value="Login" class="bg-green-600 hover:bg-green-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg mt-5" />
+    </form>
         <div class="mb-4">
           <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">Email</label>
           <input type="email" name="email" id="email" placeholder="Your email" value="{{ old('email') }}" class="border p-3 w-full rounded-lg" required />
