@@ -12,6 +12,7 @@
 
   @include('layouts.partials.__header')
 
+
   @include('layouts.partials.__flash-messages')
 
   <main class="container mx-auto mt-10">
@@ -20,6 +21,7 @@
     </h2>
     @yield('content')
   </main>
+
 
   <footer class="mt-10 text-center text-gray-500 font-bold uppercase my-10">
     AdoptATurtle - All rights reserved &copy; {{ now()->year }} 🐢
