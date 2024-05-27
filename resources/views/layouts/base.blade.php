@@ -10,23 +10,17 @@
 
 <body class="bg-gray-100">
 
-  <turbo-frame id="header">
-    @include('layouts.partials.__header')
-  </turbo-frame>
+  @include('layouts.partials.__header')
 
 
-  <turbo-frame id="flash-messages">
-    @include('layouts.partials.__flash-messages')
-  </turbo-frame>
+  @include('layouts.partials.__flash-messages')
 
-  <turbo-frame id="main-content">
-    <main class="container mx-auto mt-10">
-      <h2 class="font-black text-center text-3xl mb-10">
-        @yield('title')
-      </h2>
-      @yield('content')
-    </main>
-  </turbo-frame>
+  <main class="container mx-auto mt-10">
+    <h2 class="font-black text-center text-3xl mb-10">
+      @yield('title')
+    </h2>
+    @yield('content')
+  </main>
 
 
   <footer class="mt-10 text-center text-gray-500 font-bold uppercase my-10">
