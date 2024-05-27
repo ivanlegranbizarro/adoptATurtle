@@ -13,7 +13,8 @@
 
       <div class="mb-4">
         <label for="name" class="mb-2 block uppercase text-gray-500 font-bold">Name</label>
-        <input type="text" name="name" id="name" placeholder="Your name" value="{{ old('name') }}" class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror" />
+        <input type="text" name="name" id="name" placeholder="Your name" value="{{ old('name') }}"
+          class="border p-3 w-full rounded-lg" required minlength="3" />
         @error('name')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
@@ -21,7 +22,8 @@
 
       <div class="mb-4">
         <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">Email</label>
-        <input type="email" name="email" id="email" placeholder="Your email" value="{{ old('email') }}" class="border p-3 w-full rounded-lg @error('email') border-red-500 @enderror" />
+        <input type="email" name="email" id="email" placeholder="Your email" value="{{ old('email') }}"
+          class="border p-3 w-full rounded-lg" required />
         @error('email')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
@@ -29,7 +31,8 @@
 
       <div class="mb-4">
         <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">Password</label>
-        <input type="password" name="password" id="password" placeholder="Your password" class="border p-3 w-full rounded-lg @error('password') border-red-500 @enderror" />
+        <input type="password" name="password" id="password" placeholder="Your password"
+          class="border p-3 w-full rounded-lg" required minlength="6" />
         @error('password')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
@@ -37,13 +40,15 @@
 
       <div class="mb-4">
         <label for="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">Confirm Password</label>
-        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Your password" class="border p-3 w-full rounded-lg" />
+        <input type="password" name="password_confirmation" id="password_confirmation"
+          placeholder="Confirm Your password" class="border p-3 w-full rounded-lg" required minlength="6" />
         @error('password_confirmation')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
       </div>
 
-      <input type="submit" value="Register" class="bg-green-600 hover:bg-green-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg mt-5" />
+      <input type="submit" value="Register"
+        class="bg-green-600 hover:bg-green-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg mt-5" />
     </form>
   </div>
 </div>
