@@ -3,7 +3,7 @@
 @section('title', 'Register')
 
 @section('content')
-<div class="md:flex">
+<div class="md:flex md:gap-10">
   <div class="md:w-1/2 bg-white shadow-xl rounded-lg p-6">
     <img src="{{ asset('img/tortuga-register.jpg') }}" alt="Welcome turtle" />
   </div>

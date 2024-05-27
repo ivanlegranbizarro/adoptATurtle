@@ -12,7 +12,7 @@
   <header class="p-5 border-b bg-white shadow">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-3xl font-black">
-        AdoptATurtle
+        <a href="{{ route('tortugas.index') }}">AdoptATurtle</a>
       </h1>
       <nav class="flex gap-2 items-center">
         @guest()
