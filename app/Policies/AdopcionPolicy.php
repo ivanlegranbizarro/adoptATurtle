@@ -13,7 +13,7 @@ class AdopcionPolicy
    */
   public function viewAny(User $user): bool|Response
   {
-    if ($user->hasRole('admin')) {
+    if ($user->role == 'admin') {
       return true;
     }
     return Response::deny('You are not alloweed to check information about adoptions.');
@@ -35,7 +35,7 @@ class AdopcionPolicy
    */
   public function create(User $user): bool|Response
   {
-    if ($user->hasRole('admin')) {
+    if ($user->role == 'admin') {
       return true;
     }
     return Response::deny('You are not alloweed to register information about adoptions.');
@@ -46,7 +46,7 @@ class AdopcionPolicy
    */
   public function update(User $user, Adopcion $adopcion): bool|Response
   {
-    if ($user->hasRole('admin')) {
+    if ($user->role == 'admin') {
       return true;
     }
     return Response::deny('You are not alloweed to modify information about adoptions.');
@@ -57,7 +57,7 @@ class AdopcionPolicy
    */
   public function delete(User $user, Adopcion $adopcion): bool|Response
   {
-    if ($user->hasRole('admin')) {
+    if ($user->role == 'admin') {
       return true;
     }
     return Response::deny('You are not alloweed to delete information about adoptions.');
