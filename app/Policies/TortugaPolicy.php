@@ -29,7 +29,7 @@ class TortugaPolicy
    */
   public function create(User $user): bool|Response
   {
-    if ($user->hasRole('admin')) {
+    if ($user->role == 'admin') {
       return true;
     }
     return Response::deny('You are not alloweed to register information about turtles.');
@@ -40,7 +40,7 @@ class TortugaPolicy
    */
   public function update(User $user, Tortuga $tortuga): bool|Response
   {
-    if ($user->hasRole('admin')) {
+    if ($user->role == 'admin') {
       return true;
     }
     return Response::deny('You are not alloweed to modify information about turtles.');
@@ -51,7 +51,7 @@ class TortugaPolicy
    */
   public function delete(User $user, Tortuga $tortuga): bool|Response
   {
-    if ($user->hasRole('admin')) {
+    if ($user->role == 'admin') {
       return true;
     }
     return Response::deny('You are not alloweed to delete information about turtles.');

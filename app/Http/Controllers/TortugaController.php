@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tortuga;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreTortugaRequest;
@@ -25,6 +26,8 @@ class TortugaController extends Controller
    */
   public function create(): View
   {
+
+    Gate::authorize('create', Tortuga::class);
     return view('layouts.tortugas.create');
   }
 
@@ -59,6 +62,7 @@ class TortugaController extends Controller
    */
   public function edit(Tortuga $tortuga): View
   {
+    Gate::authorize('update', $tortuga);
     return view('layouts.tortugas.edit', compact('tortuga'));
   }
 
@@ -91,6 +95,7 @@ class TortugaController extends Controller
    */
   public function destroy(Tortuga $tortuga): RedirectResponse
   {
+    Gate::authorize('delete', $tortuga);
     if ($tortuga->image) {
       Storage::delete(str_replace('storage/', 'public/', $tortuga->image));
     }
