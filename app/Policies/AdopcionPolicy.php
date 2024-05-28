@@ -24,7 +24,7 @@ class AdopcionPolicy
    */
   public function view(User $user, Adopcion $adopcion): bool|Response
   {
-    if ($user->hasRole('admin')) {
+    if ($user->role == 'admin') {
       return true;
     }
     return Response::deny('You are not alloweed to check information about adoptions.');
