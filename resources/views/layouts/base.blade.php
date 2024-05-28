@@ -15,7 +15,7 @@
 
   @include('layouts.partials.__flash-messages')
 
-  <main class="container mx-auto mt-10" style="min-height: calc(100vh - 250px);">
+  <main class="container mx-auto mt-10" style="min-height: calc(100vh - 200px);">
     <h2 class="font-black text-center text-3xl mb-10">
       @yield('title')
     </h2>
