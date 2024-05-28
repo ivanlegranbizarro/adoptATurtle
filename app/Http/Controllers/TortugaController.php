@@ -18,7 +18,8 @@ class TortugaController extends Controller
    */
   public function index(): View
   {
-    return view('layouts.tortugas.index');
+    $tortugas = Tortuga::notAdopted()->get();
+    return view('layouts.tortugas.index', compact('tortugas'));
   }
 
   /**

@@ -22,4 +22,9 @@ class Tortuga extends Model
   {
     return $this->hasOne(Adopcion::class);
   }
+
+  public function scopeNotAdopted($query)
+  {
+    return $query->where('is_adopted', false);
+  }
 }
