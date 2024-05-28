@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\NoEmojis;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTortugaRequest extends FormRequest
@@ -23,7 +22,7 @@ class StoreTortugaRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'name' => ['required', 'string', 'min:2', 'max:100', 'unique:tortugas', new NoEmojis],
+      'name' => ['required', 'string', 'min:2', 'max:100', 'unique:tortugas'],
       'birthday' => 'required|date',
       'image' => 'required|image:jpeg,png,jpg,gif,svg|max:2048',
     ];
