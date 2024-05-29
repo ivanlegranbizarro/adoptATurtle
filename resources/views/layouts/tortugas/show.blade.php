@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'Turtle Details')
+@section('title', $tortuga->name)
 
 @section('content')
 <div class="container mx-auto mt-8 flex justify-center">

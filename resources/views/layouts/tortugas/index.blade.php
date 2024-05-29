@@ -13,7 +13,6 @@
         <h2 class="text-xl font-bold mb-2">{{ $tortuga->name }}</h2>
         <p>Age: {{ $tortuga->age }} years</p>
         <p class="text-gray-600 mb-4">Birthday: {{ $tortuga->birthday }}</p>
-        <p class="text-gray-600 mb-4">Comments : {{ $tortuga->comments }}</p>
         <a href="{{ route('tortugas.show', $tortuga) }}"
           class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           View Details
