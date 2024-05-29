@@ -11,9 +11,15 @@
       <p>Age: {{ $tortuga->age }} years</p>
       <p class="text-gray-600 mb-4">Birthday: {{ $tortuga->birthday }}</p>
       <p class="text-gray-600 mb-4">Comments: {{ $tortuga->comments }}</p>
-      <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-        Adopt
-      </a>
+      <div class="flex justify-around">
+        <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4">
+          Adopt
+        </a>
+
+        <a href="{{ route('tortugas.index') }}" class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4">
+          Back
+        </a>
+      </div>
     </div>
   </div>
 </div>
