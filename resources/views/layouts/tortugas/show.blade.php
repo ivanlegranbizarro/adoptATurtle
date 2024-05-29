@@ -15,10 +15,22 @@
         <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4">
           Adopt
         </a>
-
         <a href="{{ route('tortugas.index') }}" class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4">
           Back
         </a>
+
+        @if (auth()->user()->role == 'admin')
+        <a href="{{ route('tortugas.edit', $tortuga) }}"
+          class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+          Edit
+        </a>
+        <form action="{{ route('tortugas.destroy', $tortuga) }}" method="POST" class="inline">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Delete
+          </button>
+          @endif
       </div>
     </div>
   </div>
