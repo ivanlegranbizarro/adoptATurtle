@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tortuga;
 use Illuminate\View\View;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
@@ -65,6 +66,7 @@ class TortugaController extends Controller
   public function edit(Tortuga $tortuga): View
   {
     Gate::authorize('update', $tortuga);
+    $tortuga->birthday = Carbon::parse($tortuga->birthday);
     return view('layouts.tortugas.edit', compact('tortuga'));
   }
 

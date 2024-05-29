@@ -34,7 +34,9 @@
           @enderror
 
           @if($tortuga->image)
-          <img src="{{ asset('storage/' . $tortuga->image) }}" alt="Turtle image" class="mt-4 w-32 h-32 object-cover rounded-full">
+          <div class="my-2 flex justify-center">
+          <img src="{{ asset($tortuga->image) }}" alt="Turtle image" class="mt-4 w-32 h-32 object-cover rounded-full">
+          </div>
           @endif
         </div>
 
