@@ -41,14 +41,15 @@ class TortugaController extends Controller
 
     if ($request->hasFile('image')) {
       $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-      $path = $request->file('image')->storeAs('public/images', $fileName);
-      $data['image'] = '/storage/' . $path;
+      $request->file('image')->storeAs('public/images', $fileName);
+      $data['image'] = 'storage/images/' . $fileName;
     }
 
     Tortuga::create($data);
 
     return redirect()->route('tortugas.index')->with('success', 'You have successfully added a new turtle!');
   }
+
 
   /**
    * Display the specified resource.
