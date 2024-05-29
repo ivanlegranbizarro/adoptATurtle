@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Adopcion;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -26,5 +27,10 @@ class Tortuga extends Model
   public function scopeNotAdopted($query)
   {
     return $query->where('is_adopted', false);
+  }
+
+  public function getAgeAttribute()
+  {
+    return Carbon::parse($this->attributes['birthday'])->age;
   }
 }

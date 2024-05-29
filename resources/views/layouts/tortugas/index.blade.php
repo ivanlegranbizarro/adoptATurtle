@@ -11,8 +11,11 @@
       <img src="{{ $tortuga->image }}" alt="{{ $tortuga->name }}" class="w-full h-56 object-cover">
       <div class="p-6">
         <h2 class="text-xl font-bold mb-2">{{ $tortuga->name }}</h2>
+        <p>Age: {{ $tortuga->age }}</p>
         <p class="text-gray-600 mb-4">Birthday: {{ $tortuga->birthday }}</p>
-        <a href="{{ route('tortugas.show', $tortuga) }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        <p class="text-gray-600">Comments : {{ $tortuga->comments }}</p>
+        <a href="{{ route('tortugas.show', $tortuga) }}"
+          class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           View Details
         </a>
       </div>
