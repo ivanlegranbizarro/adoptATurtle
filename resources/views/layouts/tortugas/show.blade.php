@@ -27,7 +27,7 @@
         <form action="{{ route('tortugas.destroy', $tortuga) }}" method="POST" class="inline">
           @csrf
           @method('DELETE')
-          <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Are you sure?')">
             Delete
           </button>
           @endif
