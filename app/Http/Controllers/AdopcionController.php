@@ -15,7 +15,7 @@ class AdopcionController extends Controller
   public function index(): View
   {
     $adopciones = Adopcion::all();
-    return view('adopciones.index', compact('adopciones'));
+    return view('layouts.adopciones.index', compact('adopciones'));
   }
 
   /**
