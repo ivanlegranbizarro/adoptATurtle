@@ -8,6 +8,8 @@ use App\Models\Adopcion;
 use App\Models\Tortuga;
 use Illuminate\View\View;
 
+//TODO Implementar las policies
+
 class AdopcionController extends Controller
 {
   /**
@@ -32,13 +34,19 @@ class AdopcionController extends Controller
    */
   public function store(StoreAdopcionRequest $request)
   {
-    Adopcion::create([
+    $adopcion = Adopcion::create([
       'tortuga_id' => $request->tortuga_id,
-      'user_id' => auth()->id(),
+      'user_id' => auth()->user()->id,
       'motivation' => $request->motivation,
     ]);
 
-    return redirect()->route('adopciones.index')->with('success', 'Adopción creada exitosamente.');
+    if ($adopcion) {
+      $tortuga = Tortuga::find($request->tortuga_id);
+      $tortuga->is_adopted = true;
+      $tortuga->save();
+    }
+
+    return redirect()->route('tortugas.index')->with('success', 'Adopción creada exitosamente.');
   }
 
   /**

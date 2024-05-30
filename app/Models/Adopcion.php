@@ -12,6 +12,7 @@ class Adopcion extends Model
 
 
   protected $fillable = [
+    'user_id',
     'tortuga_id',
     'motivation',
   ];
