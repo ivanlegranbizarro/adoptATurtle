@@ -12,16 +12,19 @@
       <p class="text-gray-600 mb-4">Birthday: {{ $tortuga->birthday }}</p>
       <p class="text-gray-600 mb-4">Comments: {{ $tortuga->comments }}</p>
       <div class="flex justify-around">
-        <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4">
+        @auth
+        <a href="{{ route('adopciones.create', $tortuga) }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4">
           Adopt
         </a>
+        @endauth
+
         <a href="{{ route('tortugas.index') }}" class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4">
           Back
         </a>
 
+        @auth
         @if (auth()->user()->role == 'admin')
-        <a href="{{ route('tortugas.edit', $tortuga) }}"
-          class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+        <a href="{{ route('tortugas.edit', $tortuga) }}" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
           Edit
         </a>
         <form action="{{ route('tortugas.destroy', $tortuga) }}" method="POST" class="inline">
@@ -31,6 +34,7 @@
             Delete
           </button>
           @endif
+          @endauth
       </div>
     </div>
   </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAdopcionRequest;
 use App\Http\Requests\UpdateAdopcionRequest;
 use App\Models\Adopcion;
+use App\Models\Tortuga;
 use Illuminate\View\View;
 
 class AdopcionController extends Controller
@@ -21,9 +22,9 @@ class AdopcionController extends Controller
   /**
    * Show the form for creating a new resource.
    */
-  public function create()
+  public function create(Tortuga $tortuga): View
   {
-    //
+    return view('layouts.adopciones.create', compact('tortuga'));
   }
 
   /**
@@ -31,7 +32,13 @@ class AdopcionController extends Controller
    */
   public function store(StoreAdopcionRequest $request)
   {
-    //
+    Adopcion::create([
+      'tortuga_id' => $request->tortuga_id,
+      'user_id' => auth()->id(),
+      'motivation' => $request->motivation,
+    ]);
+
+    return redirect()->route('adopciones.index')->with('success', 'Adopción creada exitosamente.');
   }
 
   /**

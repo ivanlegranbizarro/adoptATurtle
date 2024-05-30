@@ -22,3 +22,5 @@ Route::resources([
 
 
 Route::get('/adopciones', [AdopcionController::class, 'index'])->name('adopciones.index');
+Route::get('/adopciones/create/{tortuga}', [AdopcionController::class, 'create'])->name('adopciones.create');
+Route::post('/adopciones', [AdopcionController::class, 'store'])->name('adopciones.store');
