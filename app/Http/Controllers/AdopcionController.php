@@ -6,6 +6,7 @@ use App\Http\Requests\StoreAdopcionRequest;
 use App\Http\Requests\UpdateAdopcionRequest;
 use App\Models\Adopcion;
 use App\Models\Tortuga;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 //TODO Implementar las policies
@@ -17,6 +18,7 @@ class AdopcionController extends Controller
    */
   public function index(): View
   {
+    Gate::authorize('viewAny', Adopcion::class);
     $adopciones = Adopcion::all();
     return view('layouts.adopciones.index', compact('adopciones'));
   }
@@ -26,6 +28,7 @@ class AdopcionController extends Controller
    */
   public function create(Tortuga $tortuga): View
   {
+    Gate::authorize('create', Adopcion::class);
     return view('layouts.adopciones.create', compact('tortuga'));
   }
 
@@ -34,19 +37,16 @@ class AdopcionController extends Controller
    */
   public function store(StoreAdopcionRequest $request)
   {
-    $adopcion = Adopcion::create([
-      'tortuga_id' => $request->tortuga_id,
-      'user_id' => auth()->user()->id,
-      'motivation' => $request->motivation,
-    ]);
+    $data = $request->validated();
+    $data = array_merge($data, ['user_id' => auth()->user()->id]);
 
-    if ($adopcion) {
-      $tortuga = Tortuga::find($request->tortuga_id);
-      $tortuga->is_adopted = true;
-      $tortuga->save();
-    }
+    Adopcion::create($data);
 
-    return redirect()->route('tortugas.index')->with('success', 'Adopción creada exitosamente.');
+    $tortuga = Tortuga::find($request->tortuga_id);
+    $tortuga->is_adopted = true;
+    $tortuga->save();
+
+    return redirect()->route('tortugas.index')->with('success', 'Your adoption has been registered!');
   }
 
   /**
@@ -54,7 +54,7 @@ class AdopcionController extends Controller
    */
   public function show(Adopcion $adopcion)
   {
-    //
+    Gate::authorize('view', $adopcion);
   }
 
   /**
@@ -62,7 +62,9 @@ class AdopcionController extends Controller
    */
   public function edit(Adopcion $adopcion)
   {
-    //
+    Gate::authorize('update', $adopcion);
+    $tortuga = $adopcion->tortuga;
+    return view('layouts.adopciones.edit', compact('adopcion', 'tortuga'));
   }
 
   /**
@@ -76,8 +78,14 @@ class AdopcionController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Adopcion $adopcion)
+  public function destroy(Adopcion $adopcion, Tortuga $tortuga)
   {
-    //
+    Gate::authorize('delete', $adopcion);
+
+    $tortuga->is_adopted = false;
+    $tortuga->save();
+    $adopcion->delete();
+
+    return \redirect()->back()->with('success', 'Adoption deleted successfully');
   }
 }
