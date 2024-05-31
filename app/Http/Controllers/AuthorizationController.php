@@ -19,9 +19,14 @@ class AuthorizationController extends Controller
   {
     $data = $request->validated();
 
-    auth()->attempt($data);
+    if (auth()->attempt(['email' => $data['email'], 'password' => $data['password']])) {
+      $request->session()->regenerate();
+      return redirect()->intended(route('tortugas.index'));
+    }
 
-    return redirect()->route('tortugas.index');
+    return back()->withErrors([
+      'email' => 'The provided credentials do not match our records.',
+    ]);
   }
 
 

@@ -35,10 +35,7 @@ class AdopcionPolicy
    */
   public function create(User $user): bool|Response
   {
-    if ($user->role == 'admin') {
-      return true;
-    }
-    return Response::deny('You are not alloweed to register information about adoptions.');
+    return \auth()->check();
   }
 
   /**
