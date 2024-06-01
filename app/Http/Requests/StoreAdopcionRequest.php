@@ -23,7 +23,7 @@ class StoreAdopcionRequest extends FormRequest
   {
     return [
       'tortuga_id' => 'required|exists:tortugas,id',
-      'motivation' => 'required|string|max:500',
+      'motivation' => 'required|string|min:100|max:500',
     ];
   }
 }
