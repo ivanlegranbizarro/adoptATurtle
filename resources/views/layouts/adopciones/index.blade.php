@@ -26,7 +26,7 @@
             <form action="{{ route('adopciones.destroy', $adopcion->id) }}" method="POST" style="display:inline;">
               @csrf
               @method('DELETE')
-              <button type="submit" class="bg-red-200 hover:bg-red-300 text-white font-bold py-1 px-3 rounded transition-colors duration-200" onclick="return confirm('Are you sure you want to delete this adoption?')">Delete</button>
+              <button type="submit" class="bg-red-300 hover:bg-red-400 text-white font-bold py-1 px-3 rounded transition-colors duration-200" onclick="return confirm('Are you sure you want to delete this adoption?')">Delete</button>
             </form>
           </td>
         </tr>
