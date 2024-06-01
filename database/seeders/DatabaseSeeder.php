@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tortuga;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -26,6 +27,18 @@ class DatabaseSeeder extends Seeder
       'email' => 'ruben@ruben.com',
       'password' => Hash::make('password'),
       'role' => 'user'
+    ]);
+
+    Tortuga::create([
+      'name'=> 'Dylan el hermoso',
+      'birthday' => '2023-01-01',
+      'image'=> \asset('img/dylanElHermoso.jpeg')
+    ]);
+
+    Tortuga::create([
+      'name'=> 'Jeremy Greenfield',
+      'birthday' => '2020-01-01',
+      'image'=> \asset('img/JeremyGreenfield.jpg')
     ]);
   }
 }
