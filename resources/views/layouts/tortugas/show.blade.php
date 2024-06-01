@@ -13,9 +13,11 @@
       <p class="text-gray-600 mb-4">Comments: {{ $tortuga->comments }}</p>
       <div class="flex justify-around">
         @auth
+        @if (auth()->user()->role == 'user')
         <a href="{{ route('adopciones.create', $tortuga) }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4">
           Adopt
         </a>
+        @endif
         @endauth
 
         <a href="{{ route('tortugas.index') }}" class="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4">

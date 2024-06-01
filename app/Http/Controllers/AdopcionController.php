@@ -9,7 +9,6 @@ use App\Models\Tortuga;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
-//TODO Implementar las policies
 
 class AdopcionController extends Controller
 {
@@ -72,16 +71,20 @@ class AdopcionController extends Controller
    */
   public function update(UpdateAdopcionRequest $request, Adopcion $adopcion)
   {
-    //
+    $data = $request->validated();
+    $adopcion->update($data);
+
+    return redirect()->route('adopciones.index')->with('success', 'Adoption updated successfully');
   }
 
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Adopcion $adopcion, Tortuga $tortuga)
+  public function destroy(Adopcion $adopcion)
   {
     Gate::authorize('delete', $adopcion);
 
+    $tortuga = $adopcion->tortuga;
     $tortuga->is_adopted = false;
     $tortuga->save();
     $adopcion->delete();

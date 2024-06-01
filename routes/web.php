@@ -19,6 +19,8 @@ Route::resources([
   'tortugas' => TortugaController::class
 ]);
 
-Route::get('/adopciones/create/{tortuga}', [AdopcionController::class, 'createWithTortuga'])->name('adopciones.createWithTortuga');
+Route::get('/adopciones/create/{tortuga}', [AdopcionController::class, 'create'])->name('adopciones.create');
 
-Route::resource('adopciones', AdopcionController::class)->except(['create']);
+Route::resource('adopciones', AdopcionController::class)->except(['create'])->parameters([
+  'adopciones' => 'adopcion'
+]);
