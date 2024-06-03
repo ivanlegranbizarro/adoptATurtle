@@ -38,6 +38,7 @@ Sigue estos pasos para instalar y configurar el proyecto:
      php artisan serve
 
 7. **Seeders para testear el proyecto**:
+
   El proyecto 'plantará' dos ejemplos con dos tortugas ya creadas y dos usuarios. Uno de ellos 'admin@admin.com' con password 'password' con privilegios de administrador, y un usuario sin privilegios 'ruben@ruben.com' con password 'password'.
 
 
