@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Tortuga;
 use App\Models\User;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,30 +29,16 @@ class DatabaseSeeder extends Seeder
       'role' => 'user'
     ]);
 
-    $tortugas = [
-      [
-        'name' => 'Dylan el hermoso',
-        'birthday' => '2023-01-01',
-        'image' => 'img/dylanElHermoso.jpeg'
-      ],
-      [
-        'name' => 'Jeremy Greenfield',
-        'birthday' => '2020-01-01',
-        'image' => 'img/JeremyGreenfield.jpg'
-      ]
-    ];
-
-    foreach ($tortugas as $tortuga) {
-      $this->createTortuga($tortuga);
-    }
-  }
-
-  private function createTortuga(array $data)
-  {
     Tortuga::create([
-      'name' => $data['name'],
-      'birthday' => $data['birthday'],
-      'image' => Storage::url($data['image'])
+      'name' => 'Dylan el hermoso',
+      'birthday' => '2023-01-01',
+      'image' => url('img/dylanElHermoso.jpeg')
+    ]);
+
+    Tortuga::create([
+      'name' => 'Jeremy Greenfield',
+      'birthday' => '2020-01-01',
+      'image' => url('img/JeremyGreenfield.jpg')
     ]);
   }
 }
