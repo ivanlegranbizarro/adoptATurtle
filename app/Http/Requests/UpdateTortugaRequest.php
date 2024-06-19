@@ -11,7 +11,7 @@ class UpdateTortugaRequest extends FormRequest
    */
   public function authorize(): bool
   {
-    return false;
+    return true;
   }
 
   /**
@@ -24,7 +24,7 @@ class UpdateTortugaRequest extends FormRequest
     return [
       'name' => 'required|string|min:2|max:100|unique:tortugas',
       'birthday' => 'required|date',
-      'image' => 'required|image:jpeg,png,jpg,gif,svg|max:2048',
+      'image' => 'image:jpeg,png,jpg,gif,svg|max:2048',
     ];
   }
 }
