@@ -30,15 +30,15 @@ class DatabaseSeeder extends Seeder
     ]);
 
     Tortuga::create([
-      'name'=> 'Dylan el hermoso',
+      'name' => 'Dylan el hermoso',
       'birthday' => '2023-01-01',
-      'image'=> \asset('img/dylanElHermoso.jpeg')
+      'image' => url('img/dylanElHermoso.jpeg')
     ]);
 
     Tortuga::create([
-      'name'=> 'Jeremy Greenfield',
+      'name' => 'Jeremy Greenfield',
       'birthday' => '2020-01-01',
-      'image'=> \asset('img/JeremyGreenfield.jpg')
+      'image' => url('img/JeremyGreenfield.jpg')
     ]);
   }
 }
