@@ -1,66 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Proyecto de Adopción de Tortugas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto es un centro de adopción de tortugas que permite la gestión de información de tortugas y de adopciones. Solo los administradores pueden gestionar estas cosas, mientras que los usuarios con el rol 'user' solo pueden ver la información y solicitar adopciones.
 
-## About Laravel
+## Requisitos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- PHP
+- Composer
+- Laravel
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instalación y Configuración
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Sigue estos pasos para instalar y configurar el proyecto:
 
-## Learning Laravel
+1. **Clona el repositorio**:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+       git clone https://github.com/ivanlegranbizarro/adoptATurtle
+       cd adoptATurtle
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. **Configurar archivo .env**:
+		  Duplica el archivo '.env.example' y renómbrarlo como '.env'
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+3. **Instalar dependencias**:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    composer install
 
-### Premium Partners
+4. **Ejecuta las migraciones y puebla la base de datos sqlite**:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+     php artisan migrate --seed
 
-## Contributing
+5. **Genera el enlace simbólico para el almacenamiento de archivos**:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    php artisan storage:link
 
-## Code of Conduct
+6. **Ejecuta el servidor web**:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+     php artisan serve
 
-## Security Vulnerabilities
+7. **Seeders para testear el proyecto**:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  El proyecto 'plantará' dos ejemplos con dos tortugas ya creadas y dos usuarios. Uno de ellos 'admin@admin.com' con password 'password' con privilegios de administrador, y un usuario sin privilegios 'ruben@ruben.com' con password 'password'.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Rutas del proyecto de adopción de tortugas
+
+## Rutas Principales
+
+- **Inicio**:
+  - `GET /` - Muestra la lista de tortugas disponibles para adopción.
+    - **Controlador**: `TortugaController`
+    - **Acción**: `index`
+    - **Nombre de la Ruta**: `tortugas.index`
+
+- **Registro de Usuarios**:
+  - `GET /register` - Muestra el formulario de registro.
+    - **Controlador**: `RegisterController`
+    - **Acción**: `index`
+    - **Nombre de la Ruta**: `register`
+
+- **Inicio de Sesión**:
+  - `GET /login` - Muestra el formulario de inicio de sesión.
+    - **Controlador**: `AuthorizationController`
+    - **Acción**: `index`
+    - **Nombre de la Ruta**: `login`
+
+- **Cierre de Sesión**:
+  - `GET /logout` - Cierra la sesión del usuario.
+    - **Controlador**: `AuthorizationController`
+    - **Acción**: `logout`
+    - **Nombre de la Ruta**: `logout`
+
+- **Gestión de Tortugas**:
+  - `GET /tortugas` - Muestra la lista de tortugas (recurso index).
+  - `GET /tortugas/create` - Muestra el formulario para crear una nueva tortuga.
+  - `GET /tortugas/{tortuga}` - Muestra la información de una tortuga específica.
+  - `GET /tortugas/{tortuga}/edit` - Muestra el formulario para editar una tortuga existente.
+    - **Controlador**: `TortugaController`
+    - **Acciones**: `index`, `create`, `show`, `edit`
+
+- **Gestión de Adopciones**:
+  - `GET /adopciones` - Muestra la lista de adopciones (recurso index).
+  - `GET /adopciones/create/{tortuga}` - Muestra el formulario para solicitar la adopción de una tortuga específica.
+  - `GET /adopciones/{adopcion}` - Muestra la información de una adopción específica.
+  - `GET /adopciones/{adopcion}/edit` - Muestra el formulario para editar una adopción existente.
+    - **Controlador**: `AdopcionController`
+    - **Acciones**: `index`, `create`, `show`, `edit`
+    - **Nombre de la Ruta para Crear Adopción**: `adopciones.create`
+    - **Nombre del Parámetro**: `adopcion`
