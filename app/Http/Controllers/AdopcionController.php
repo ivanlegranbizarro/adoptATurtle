@@ -17,7 +17,11 @@ class AdopcionController extends Controller
    */
   public function index(): View
   {
-    $adopciones = Adopcion::all();
+    if (auth()->user()->role == 'admin') {
+      $adopciones = Adopcion::all();
+    } else {
+      $adopciones = Adopcion::where('user_id', auth()->user()->id)->get();
+    }
     return view('layouts.adopciones.index', compact('adopciones'));
   }
 
@@ -26,7 +30,6 @@ class AdopcionController extends Controller
    */
   public function create(Tortuga $tortuga): View
   {
-    Gate::authorize('create', Adopcion::class);
     return view('layouts.adopciones.create', compact('tortuga'));
   }
 

@@ -32,7 +32,7 @@ class AdopcionPolicy
    */
   public function create(User $user): bool|Response
   {
-    return \auth()->check();
+    return true;
   }
 
   /**

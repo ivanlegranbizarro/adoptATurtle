@@ -12,7 +12,9 @@
           <th class="py-2 px-4 border text-center">User</th>
           <th class="py-2 px-4 border text-center">Turtle</th>
           <th class="py-2 px-4 border text-center">Adoption Date</th>
+          @if (auth()->user()->role == 'admin')
           <th class="py-2 px-4 border text-center">Actions</th>
+          @endif
         </tr>
       </thead>
       <tbody>
@@ -21,6 +23,7 @@
           <td class="py-2 px-4 border text-center">{{ $adopcion->user->name }}</td>
           <td class="py-2 px-4 border text-center">{{ $adopcion->tortuga->name }}</td>
           <td class="py-2 px-4 border text-center">{{ $adopcion->created_at->format('d M Y') }}</td>
+          @if (auth()->user()->role == 'admin')
           <td class="py-2 px-4 border text-center">
             <a href="{{ route('adopciones.edit', ['adopcion' => $adopcion->id]) }}" class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-1 px-3 rounded transition-colors duration-200">Edit</a>
             <form action="{{ route('adopciones.destroy', $adopcion->id) }}" method="POST" style="display:inline;">
@@ -29,6 +32,8 @@
               <button type="submit" class="bg-red-300 hover:bg-red-400 text-white font-bold py-1 px-3 rounded transition-colors duration-200" onclick="return confirm('Are you sure you want to delete this adoption?')">Delete</button>
             </form>
           </td>
+          @endif
+
         </tr>
         @endforeach
       </tbody>
