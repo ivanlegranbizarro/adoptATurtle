@@ -13,10 +13,7 @@ class AdopcionPolicy
    */
   public function viewAny(User $user): bool|Response
   {
-    if ($user->role == 'admin') {
-      return true;
-    }
-    return Response::deny('You are not alloweed to check information about adoptions.');
+    return true;
   }
 
   /**
@@ -35,7 +32,7 @@ class AdopcionPolicy
    */
   public function create(User $user): bool|Response
   {
-    return \auth()->check();
+    return true;
   }
 
   /**
