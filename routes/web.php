@@ -19,8 +19,10 @@ Route::resources([
   'tortugas' => TortugaController::class
 ]);
 
-Route::get('/adopciones/create/{tortuga}', [AdopcionController::class, 'create'])->name('adopciones.create');
+Route::middleware('auth')->group(function () {
+  Route::get('/adopciones/create/{tortuga}', [AdopcionController::class, 'create'])->name('adopciones.create');
 
-Route::resource('adopciones', AdopcionController::class)->except(['create'])->parameters([
-  'adopciones' => 'adopcion'
-]);
+  Route::resource('adopciones', AdopcionController::class)->except(['create'])->parameters([
+    'adopciones' => 'adopcion'
+  ]);
+});

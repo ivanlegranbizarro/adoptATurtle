@@ -17,7 +17,6 @@ class AdopcionController extends Controller
    */
   public function index(): View
   {
-    Gate::authorize('viewAny', Adopcion::class);
     $adopciones = Adopcion::all();
     return view('layouts.adopciones.index', compact('adopciones'));
   }
