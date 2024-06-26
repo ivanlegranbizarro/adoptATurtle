@@ -10,7 +10,7 @@
     <input type="hidden" name="tortuga_id" value="{{ $tortuga->id }}">
     <div class="mb-4">
       <label for="motivation" class="block text-gray-700">Motivation:</label>
-      <textarea name="motivation" id="motivation" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" minlength="10" maxlength="255" placeholder="Why do you want to adopt {{ $tortuga->name }}? Please, provide some details (255 characters max). We need to know {{ $tortuga->name }} will be in good hands. ">@if(old('motivation')){{ old('motivation') }}@endif</textarea>
+      <textarea name="motivation" id="motivation" rows="4" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm" minlength="10" maxlength="500" placeholder="Why do you want to adopt {{ $tortuga->name }}? Please, provide some details (255 characters max). We need to know {{ $tortuga->name }} will be in good hands. ">@if(old('motivation')){{ old('motivation') }}@endif</textarea>
       @error('motivation')
       <p class="text-red-500 text-xs mt-1">Please, we need more details.</p>
       @enderror
