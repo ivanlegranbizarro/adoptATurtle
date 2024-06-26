@@ -22,9 +22,9 @@ class UpdateTortugaRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'name' => 'required|string|min:2|max:100|unique:tortugas',
+      'name' => 'required|string|min:2|max:100|unique:tortugas,name,' . $this->tortuga->id,
       'birthday' => 'required|date',
-      'image' => 'image:jpeg,png,jpg,gif,svg|max:2048',
+      'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ];
   }
 }

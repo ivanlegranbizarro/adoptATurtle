@@ -78,18 +78,16 @@ class TortugaController extends Controller
     $data = $request->validated();
 
     if ($request->hasFile('image')) {
-
       if ($tortuga->image) {
-        Storage::delete(str_replace('/storage/', 'public/', $tortuga->image));
+        Storage::delete(str_replace('storage/', 'public/', $tortuga->image));
       }
 
       $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
       $path = $request->file('image')->storeAs('public/images', $fileName);
-      $data['image'] = '/storage/' . $path;
+      $data['image'] = 'storage/images/' . $fileName;
     }
 
     $tortuga->update($data);
-
 
     return redirect()->route('tortugas.index')->with('success', 'You have successfully updated information about a turtle!');
   }
