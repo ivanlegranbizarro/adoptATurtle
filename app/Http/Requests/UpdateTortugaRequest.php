@@ -24,6 +24,7 @@ class UpdateTortugaRequest extends FormRequest
     return [
       'name' => 'required|string|min:2|max:100|unique:tortugas,name,' . $this->tortuga->id,
       'birthday' => 'required|date',
+      'comments' => 'required|string|min:2|max:1000',
       'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ];
   }

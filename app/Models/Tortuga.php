@@ -15,6 +15,7 @@ class Tortuga extends Model
 
   protected $fillable = [
     'name',
+    'comments',
     'birthday',
     'image',
   ];

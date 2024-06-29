@@ -27,6 +27,14 @@
         </div>
 
         <div class="mb-4">
+          <label for="comments" class="mb-2 block uppercase text-gray-500 font-bold">Comments</label>
+          <textarea name="comments" class="border p-3 w-full" minlength="2" maxlength="1000">
+          {{ old('comments', $tortuga->comments) }}
+          </textarea>
+          </label>
+        </div>
+
+        <div class="mb-4">
           <label for="image" class="mb-2 block uppercase text-gray-500 font-bold">Image</label>
           <input type="file" name="image" id="image" class="border p-3 w-full rounded-lg @error('image') border-red-500 @enderror" />
           @error('image')
@@ -35,7 +43,7 @@
 
           @if($tortuga->image)
           <div class="my-2 flex justify-center">
-          <img src="{{ asset($tortuga->image) }}" alt="Turtle image" class="mt-4 w-32 h-32 object-cover rounded-full">
+            <img src="{{ asset($tortuga->image) }}" alt="Turtle image" class="mt-4 w-32 h-32 object-cover rounded-full">
           </div>
           @endif
         </div>
